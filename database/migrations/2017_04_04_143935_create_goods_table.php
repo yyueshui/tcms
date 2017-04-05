@@ -15,7 +15,7 @@ class CreateGoodsTable extends Migration
     {
         Schema::create('goods', function (Blueprint $table) {
             $table->increments('id');
-	        $table->tinyInteger('type', false, true)->comment('商品类型')->nullable(); //用于区分推广位
+	        $table->tinyInteger('type_id', false, true)->comment('商品类型')->nullable(); //用于区分推广位
 	        $table->bigInteger('goods_id', false, true)->comment('商品ID');
 	        $table->string('goods_name', 255)->comment('商品名称');
 	        $table->string('goods_image', 255)->comment('商品主图');
@@ -39,6 +39,8 @@ class CreateGoodsTable extends Migration
 	        $table->string('coupon_short_url', 50)->comment('优惠券短链接(300天内有效)')->nullable();
 	        $table->tinyInteger('is_marketing_plan', false, true)->comment('是否为营销计划商品')->nullable();
 	        $table->enum('status', [0, 1, 2])->comment('商品状态 0: 不可用， 1：可用商品，2：手动禁用商品')->default(1);
+	        $table->index('type_id');
+	        $table->unique('goods_id');
 	        $table->timestamps();
         });
     }

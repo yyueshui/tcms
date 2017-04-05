@@ -45,5 +45,6 @@ class init extends Command
 	    $this->seed('PagesTableSeeder');
 	    $this->seed('SettingsTableSeeder');
 	    $this->seed('TranslationsTableSeeder');
+	    $this->info('All seeds has done !');
     }
 }
