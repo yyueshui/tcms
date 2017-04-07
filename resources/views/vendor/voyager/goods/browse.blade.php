@@ -235,37 +235,6 @@
                 $('.side-body').multilingual();
             @endif
 
-            /*$('#import_goods').click(function(){
-             CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-             var manager = new Vue({
-             el: '#filemanager',
-             data: {
-             files: '',
-             folders: [],
-             selected_file: '',
-             directories: [],
-             },
-             });
-             source = manager.selected_file.path;
-             filename = manager.selected_file.name;
-             var goodsType = $('#goods_type').val();
-             console.log(manager)
-             console.log(filename)
-             console.log(goodsType)
-
-             $('#import_goods').modal('hide');
-             $.post('{ {  route('voyager.dashboard') }}/goods/import', { filename: filename, goodsType: goodsType, _token: CSRF_TOKEN }, function(data){
-             if(data.success == true){
-             toastr.success('Successfully renamed file/folder', "Sweet Success!");
-             getFiles(manager.folders);
-             } else {
-             toastr.error(data.error, "Whoops!");
-             }
-             });
-             });
-             });*/
-
-
             var deleteFormAction;
             $('td').on('click', '.delete', function (e) {
                 var form = $('#delete_form')[0];
@@ -281,14 +250,6 @@
 
                 $('#delete_modal').modal('show');
             });
-
-        //        $('#import_goods').click(function(){
-        //            if(typeof(manager.selected_file) !== 'undefined'){
-        //                $('#import_goods').val(manager.selected_file.name);
-        //            }
-        //            $('#new_folder_modal').modal('show');
-        //        });
-        //
-
+        });
     </script>
 @stop
