@@ -10,6 +10,14 @@ class GoodsType extends Model
 
     public function goods()
     {
-    	return $this->hasMany('App\Model\Admin\Goods', 'type_id', 'id');
+    	return $this->belongsToMany('App\Model\Admin\Goods');
     }
+
+    /*public function getStatusAttribute()
+    {
+    	return isset($this->attributes['status'])
+		    ? ($this->attributes['status'] == 1 ? '可用' : '禁用')
+		    : 1
+		;
+    }*/
 }

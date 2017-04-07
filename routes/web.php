@@ -18,8 +18,12 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
-    //添加自定义admin路由
 	$namespacePrefix = '\\App\\Http\\Controllers\\Admin\\';
+	Route::post('/attachment/import', ['uses' => $namespacePrefix.'AttachmentController@import', 'as' => 'import']);
+
+
+	//添加自定义admin路由
+	/*$namespacePrefix = '\\App\\Http\\Controllers\\Admin\\';
 	Route::group([
 		'as'     => 'goods.',
 		'prefix' => 'goods',
@@ -42,7 +46,7 @@ Route::group(['prefix' => 'admin'], function () {
 		Route::delete('/delete/{id}', ['uses' => $namespacePrefix.'GoodsTypeController@delete', 'as' => 'destroy']);
 		Route::post('/add', ['uses' => $namespacePrefix.'GoodsTypeController@add', 'as' => 'add']);
 		Route::put('/update', ['uses' => $namespacePrefix.'GoodsTypeController@update', 'as' => 'update']);
-	});
+	});*/
 });
 
 

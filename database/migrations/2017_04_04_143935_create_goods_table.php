@@ -32,8 +32,8 @@ class CreateGoodsTable extends Migration
 	        $table->integer('coupon_number', false, true)->comment('优惠券总量')->nullable();
 	        $table->integer('coupon_surplus_number', false, true)->comment('优惠券剩余量')->nullable();
 	        $table->decimal('coupon_denomination')->comment('优惠券面额')->nullable();
-	        $table->integer('coupon_start_time')->comment('优惠券开始时间')->nullable();
-	        $table->integer('coupon_end_time')->comment('优惠券结束时间')->nullable();
+	        $table->timestamp('coupon_start_time')->comment('优惠券开始时间')->nullable();
+	        $table->timestamp('coupon_end_time')->comment('优惠券结束时间')->nullable();
 	        $table->string('coupon_url', 255)->comment('优惠券链接')->nullable();
 	        $table->string('coupon_password', 50)->comment('优惠券淘口令(300天内有效)')->nullable();
 	        $table->string('coupon_short_url', 50)->comment('优惠券短链接(300天内有效)')->nullable();
