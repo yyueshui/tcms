@@ -229,6 +229,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+	    'Api' => Dingo\Api\Facade\API::class,
+		'ApiRouter' => Dingo\Api\Facade\Route::class,
     ],
 
 ];
