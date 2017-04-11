@@ -3,6 +3,7 @@
 namespace App\Console;
 
 use App\Console\Commands\Admin\init;
+use App\Console\Commands\wechat;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -15,6 +16,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         init::class,
+	    wechat::class,
     ];
 
     /**

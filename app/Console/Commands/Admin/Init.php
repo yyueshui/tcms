@@ -5,7 +5,7 @@ namespace App\Console\Commands\Admin;
 use Illuminate\Console\Command;
 use TCG\Voyager\Traits\Seedable;
 
-class init extends Command
+class Init extends Command
 {
 	use Seedable;
     /**

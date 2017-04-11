@@ -27,6 +27,16 @@ class Goods extends Model
 	    $this->attributes['coupon_end_time'] = Carbon::parse($value)->format('Y-m-d H:i:s');
     }
 
+    public function scopeGetWechatGoodsInfos($query, $name, $uid='')
+    {
+	    //todo 计算偏移，考虑用户多次搜索情况，避免每次都返回一样的数据
+	    $row = $query->where('goods_name', 'like', '%' . $name . '%')
+		    ->orderBy('commission', 'DESC')
+		    ->first(['goods_name', 'goods_image', 'tao_short_url', 'tao_password', 'coupon_denomination', 'coupon_password', 'coupon_short_url', 'mouth_sell_number', 'price']);
+
+	    return $row;
+    }
+
 	/*public function getStatusAttribute()
 	{
 		return isset($this->attributes['status'])
