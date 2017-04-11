@@ -50,7 +50,9 @@ class Wechat extends Command
 		if(!in_array($command, $this->functionConfig)) {
 			throw new CommandNotFoundException('Command not exists');
 		}
-
+	    $client = new Client(['verify' => false]);
+	    $response = $client->get($url, ['save_to' => public_path($file)]);
+	    return true;
 		//$this->replyGoods('找火火兔');
 		$this->$command();
     }

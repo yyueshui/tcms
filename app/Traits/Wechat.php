@@ -36,7 +36,8 @@ trait Wechat
 
 		$robot = new Vbot([
 			'user_path' => $path,
-			'debug' => true
+			'debug' => true,
+			'session' => 'yuanyueshui'
 		]);
 
 		$robot->server->setMessageHandler(function ($message) use ($path) {
