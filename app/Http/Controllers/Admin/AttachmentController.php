@@ -7,6 +7,7 @@ use App\Model\Admin\Goods;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class AttachmentController extends Controller
 {
@@ -82,7 +83,17 @@ class AttachmentController extends Controller
 
 		    }
 	    }
+    }
 
+    public function test()
+    {
+	    $path = 'http://img02.taobaocdn.com/bao/uploaded/i2/TB1UrvjLpXXXXb0XVXXXXXXXXXX_!!0-item_pic.jpg';
+	    $filename = '123.jpg';
+	    $p =  storage_path('taoke/images').'/'.$filename;
+	    $file = Image::make($path)->resize(300, 200)
+		    ->save($p);
+//;
+//	    dd($file);
     }
 	
 }

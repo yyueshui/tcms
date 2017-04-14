@@ -20,7 +20,7 @@ Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 	$namespacePrefix = '\\App\\Http\\Controllers\\Admin\\';
 	Route::post('/attachment/import', ['uses' => $namespacePrefix.'AttachmentController@import', 'as' => 'import']);
-
+	Route::get('/attachment/test', ['uses' => $namespacePrefix.'AttachmentController@test', 'as' => 'test']);
 
 	//添加自定义admin路由
 	/*$namespacePrefix = '\\App\\Http\\Controllers\\Admin\\';

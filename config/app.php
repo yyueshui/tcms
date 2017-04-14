@@ -233,4 +233,7 @@ return [
 		'ApiRouter' => Dingo\Api\Facade\Route::class,
     ],
 
+    'taoke' => [
+	    'images' => 'taoke/images',
+    ],
 ];

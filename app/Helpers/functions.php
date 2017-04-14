@@ -15,8 +15,14 @@
  */
 
 if(!function_exists('start_limit')) {
-	function start_limit(&$value, $start = 0, $limit = 100, $end = '...')
-	{
+	function start_limit(&$value, $start = 0, $limit = 100, $end = '...') {
 		$value = rtrim(mb_strimwidth($value, $start, $limit, '', 'UTF-8')) . $end;
+	}
+}
+
+if(!function_exists('file_ext')) {
+	function file_ext($file) {
+		if(!$file) return false;
+		return pathinfo($file, PATHINFO_EXTENSION);
 	}
 }
