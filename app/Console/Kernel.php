@@ -2,8 +2,8 @@
 
 namespace App\Console;
 
-use App\Console\Commands\Admin\init;
-use App\Console\Commands\wechat;
+use App\Console\Commands\Admin\Init;
+use App\Console\Commands\Wechat;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
