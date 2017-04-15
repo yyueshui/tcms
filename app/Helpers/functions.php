@@ -23,6 +23,8 @@ if(!function_exists('start_limit')) {
 if(!function_exists('file_ext')) {
 	function file_ext($file) {
 		if(!$file) return false;
-		return pathinfo($file, PATHINFO_EXTENSION);
+		$ext = pathinfo($file, PATHINFO_EXTENSION);
+		//判断淘宝的特殊图片类型
+		return in_array(strtolower($ext), ['ss2']) ? 'jpg' : $ext;
 	}
 }
