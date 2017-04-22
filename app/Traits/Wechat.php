@@ -39,7 +39,6 @@ trait Wechat
 			'debug' => true,
 			'session' => 'yuanyueshui'
 		]);
-
 		$robot->server->setMessageHandler(function ($message) use ($path) {
 			/** @var $message Message */
 
@@ -54,16 +53,22 @@ trait Wechat
 			if ($message instanceof Text) {
 				/** @var $message Text */
 				// 联系人自动回复商品
-				if(starts_with($message->content, '找')) {
+				if($this->isSearch($message)) {
+				//if(starts_with($message->content, '找')) {
 					if ($message->fromType === 'Contact') {
 						$info = $this->replyGoods($message->content, $image);
 
 						// 群组@我回复
 					} elseif ($message->fromType === 'Group') {
-						if ($message->isAt) {
+						//群聊at开关
+						if(\Voyager::setting('wechat_group_at') == '0') {
 							$info = $this->replyGoods($message->content, $image);
-
+						} else {
+							if($message->isAt) {
+								$info = $this->replyGoods($message->content, $image);
+							}
 						}
+
 					}
 					Image::send($message->msg['FromUserName'], $image);
 					return $info;
@@ -262,8 +267,7 @@ trait Wechat
 		//【券后价】243.00元
 		//【下单链接】http://c.b1wt.com/h.fW56G2?cv=wCP5ZtZaGz3
 		//-----------------
-		//复制这条信息，￥wCP5ZtZaGz3￥ ，打开【手机淘宝】即可查看
-		var_dump($goodsInfo->toArray());
+		//复制这条信息，￥wC P5ZtZaGz3￥ ，打开【手机淘宝】即可查看
 		$goodsStr = $goodsInfo->goods_name."\n"
 					. '【在售价】 '. $goodsInfo-> price. "元\n";
 		if($goodsInfo->coupon_short_url) {
@@ -282,5 +286,16 @@ trait Wechat
 
 		$image = $goodsInfo->local_image;
 		return $goodsStr;
+	}
+
+	public function isSearch(Message &$message)
+	{
+		if ($message->fromType === 'Group') {
+			$message->content = wechat_at($message->content, myself()->nickname);
+		}
+
+		if(starts_with(trim($message->content), '找')) return true;
+
+		return false;
 	}
 }
