@@ -236,4 +236,6 @@ return [
     'taoke' => [
 	    'images' => 'taoke/images',
     ],
+
+    'php' => env('PHP_BIN_PATH', '/usr/bin/php'),
 ];

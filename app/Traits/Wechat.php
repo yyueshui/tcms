@@ -8,6 +8,7 @@
 
 namespace App\Traits;
 
+use App\Mail\WechatTips;
 use App\Model\Admin\Goods;
 use Hanson\Vbot\Foundation\Vbot;
 use Hanson\Vbot\Message\Entity\Message;
@@ -220,10 +221,19 @@ trait Wechat
 
 		$robot->server->setExitHandler(function () {
 			\Hanson\Vbot\Support\Console::log('其他设备登录');
+			$php = config('php');
+			$shell = base_path().'/artisan wechat:serve start >> ~/wechat.log 2>&1 &';
+			exec("$php $shell");
+
+			\Mail::to('18676756298@163.com')->send(new WechatTips());
 		});
 
 		$robot->server->setExceptionHandler(function () {
 			\Hanson\Vbot\Support\Console::log('异常退出');
+			$php = config('php');
+			$shell = base_path().'/artisan wechat:serve start >> ~/wechat.log 2>&1 &';
+			exec("$php $shell");
+			\Mail::to('18676756298@163.com')->send(new WechatTips());
 		});
 
 		$robot->server->run();

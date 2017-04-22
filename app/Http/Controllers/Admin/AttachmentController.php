@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\WechatTips;
 use App\Model\Admin\Goods;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -70,6 +71,7 @@ class AttachmentController extends Controller
 				$tmp = [];
 			    foreach($row->getCellIterator() as $key => $cell) {
 			    	$data = $cell->getValue();
+			    	//处理时间
 			    	if(($key == 'Q'|| $key == 'R')
 				        && $data ) {
 					    $data = Carbon::parse($data)->format('Y-m-d H:i:s');
@@ -92,10 +94,13 @@ class AttachmentController extends Controller
 	    //$p =  storage_path('taoke/images').'/'.$filename;
 	    //$file = Image::make($path)->resize(300, 200)
 		 //   ->save($p);
-		$name = '天猫淘宝 优惠购';
-	    $msg = '@天猫淘宝 优惠购 找商品 机器人';
-	    $msg = wechat_at($msg, $name);
-	    var_dump($msg);
+	    //echo base_path();
+	    //$name = '天猫淘宝 优惠购';
+	    //$msg = '@天猫淘宝 优惠购 找商品 机器人';
+	    //$msg = wechat_at($msg, $name);
+	    //var_dump($msg);
+	    $rs = \Mail::to('18676756298@163.com')->send(new WechatTips());
+	    dd($rs);
 //;
 //	    dd($file);
     }
