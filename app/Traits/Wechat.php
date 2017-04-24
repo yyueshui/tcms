@@ -278,6 +278,7 @@ trait Wechat
 		//【下单链接】http://c.b1wt.com/h.fW56G2?cv=wCP5ZtZaGz3
 		//-----------------
 		//复制这条信息，￥wC P5ZtZaGz3￥ ，打开【手机淘宝】即可查看
+		dd($goodsInfo);
 		$goodsStr = $goodsInfo->goods_name."\n"
 					. '【在售价】 '. $goodsInfo-> price. "元\n";
 		if($goodsInfo->coupon_short_url) {

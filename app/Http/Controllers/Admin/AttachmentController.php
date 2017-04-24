@@ -89,6 +89,16 @@ class AttachmentController extends Controller
 
     public function test()
     {
+	    \DB::connection()->enableQueryLog();
+	    $goodsInfo = Goods::getWechatGoodsInfos('套装');
+	    $queries = \DB::getQueryLog();
+	    $a = end($queries);
+		dd($queries);
+	    $tmp = str_replace('?', '"'.'%s'.'"', $a["query"]);
+
+
+
+	   dd(vsprintf($tmp, $a['bindings']));
 	    //$path = 'http://img02.taobaocdn.com/bao/uploaded/i2/TB1UrvjLpXXXXb0XVXXXXXXXXXX_!!0-item_pic.jpg';
 	    //$filename = '123.jpg';
 	    //$p =  storage_path('taoke/images').'/'.$filename;
@@ -99,8 +109,8 @@ class AttachmentController extends Controller
 	    //$msg = '@天猫淘宝 优惠购 找商品 机器人';
 	    //$msg = wechat_at($msg, $name);
 	    //var_dump($msg);
-	    $rs = \Mail::to('18676756298@163.com')->send(new WechatTips());
-	    dd($rs);
+	    //$rs = \Mail::to('18676756298@163.com')->send(new WechatTips());
+	    //dd($rs);
 //;
 //	    dd($file);
     }

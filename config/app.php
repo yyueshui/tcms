@@ -180,6 +180,7 @@ return [
 	    Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 	    Dingo\Api\Provider\LaravelServiceProvider::class,
 	    Maatwebsite\Excel\ExcelServiceProvider::class,
+	    Barryvdh\Debugbar\ServiceProvider::class,
     ],
 
     /*
@@ -231,6 +232,7 @@ return [
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 	    'Api' => Dingo\Api\Facade\API::class,
 		'ApiRouter' => Dingo\Api\Facade\Route::class,
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
     ],
 
     'taoke' => [
