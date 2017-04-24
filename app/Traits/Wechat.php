@@ -219,6 +219,7 @@ trait Wechat
 
 		});
 
+		//todo test
 		$robot->server->setExitHandler(function () {
 			\Hanson\Vbot\Support\Console::log('其他设备登录');
 			$php = config('php');
@@ -228,6 +229,7 @@ trait Wechat
 			\Mail::to('18676756298@163.com')->send(new WechatTips());
 		});
 
+		//todo test
 		$robot->server->setExceptionHandler(function () {
 			\Hanson\Vbot\Support\Console::log('异常退出');
 			$php = config('php');
@@ -278,24 +280,29 @@ trait Wechat
 		//【下单链接】http://c.b1wt.com/h.fW56G2?cv=wCP5ZtZaGz3
 		//-----------------
 		//复制这条信息，￥wC P5ZtZaGz3￥ ，打开【手机淘宝】即可查看
-		dd($goodsInfo);
-		$goodsStr = $goodsInfo->goods_name."\n"
-					. '【在售价】 '. $goodsInfo-> price. "元\n";
-		if($goodsInfo->coupon_short_url) {
-			$goodsStr .= '【优惠券】'. $goodsInfo->coupon_denomination ."\n【下单链接】".$goodsInfo->coupon_short_url."\n";
+		try {
+			$goodsStr = $goodsInfo->goods_name."\n"
+				. '【在售价】 '. $goodsInfo-> price. "元\n";
+			if($goodsInfo->coupon_short_url) {
+				$goodsStr .= '【优惠券】'. $goodsInfo->coupon_denomination ."\n【下单链接】".$goodsInfo->coupon_short_url."\n";
 
-		} else {
-			$goodsStr .= '【下单链接】'. $goodsInfo->tao_short_url."\n";
+			} else {
+				$goodsStr .= '【下单链接】'. $goodsInfo->tao_short_url."\n";
+			}
+
+			$goodsStr .= '【月销量】'. $goodsInfo->mouth_sell_number."\n-----------------\n";
+			if($goodsInfo->coupon_short_url) {
+				$goodsStr .= '复制这条信息，' . $goodsInfo->coupon_password . ' ，打开【手机淘宝】即可查看';
+			} else {
+				$goodsStr .= '复制这条信息，' . $goodsInfo->tao_password . ' ，打开【手机淘宝】即可查看';
+			}
+
+			$image = $goodsInfo->local_image;
+		} catch (\Exception $e) {
+			$goodsStr = '客官，小二暂未帮您找到相关商品，要不您换个关键词试试 [奸笑]';
+			$image = '';
 		}
 
-		$goodsStr .= '【月销量】'. $goodsInfo->mouth_sell_number."\n-----------------\n";
-		if($goodsInfo->coupon_short_url) {
-			$goodsStr .= '复制这条信息，' . $goodsInfo->coupon_password . ' ，打开【手机淘宝】即可查看';
-		} else {
-			$goodsStr .= '复制这条信息，' . $goodsInfo->tao_password . ' ，打开【手机淘宝】即可查看';
-		}
-
-		$image = $goodsInfo->local_image;
 		return $goodsStr;
 	}
 

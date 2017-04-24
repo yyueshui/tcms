@@ -89,17 +89,19 @@ class AttachmentController extends Controller
 
     public function test()
     {
-	    \DB::connection()->enableQueryLog();
-	    $goodsInfo = Goods::getWechatGoodsInfos('套装');
-	    $queries = \DB::getQueryLog();
-	    $a = end($queries);
-		dd($queries);
-	    $tmp = str_replace('?', '"'.'%s'.'"', $a["query"]);
-
-
-
-	   dd(vsprintf($tmp, $a['bindings']));
-	    //$path = 'http://img02.taobaocdn.com/bao/uploaded/i2/TB1UrvjLpXXXXb0XVXXXXXXXXXX_!!0-item_pic.jpg';
+	   // \DB::connection()->enableQueryLog();
+	   // $goodsInfo = Goods::getWechatGoodsInfos('套装');
+	   // //$goodsInfo = Goods::getWechatGoodsInfos('童鞋');
+	   // $queries = \DB::getQueryLog();
+	   // $a = end($queries);
+	   // var_dump($goodsInfo);
+		//dd($queries);
+	   // $tmp = str_replace('?', '"'.'%s'.'"', $a["query"]);
+	   //
+	   //
+	   //
+	   //d(vsprintf($tmp, $a['bindings']));
+	   // //$path = 'http://img02.taobaocdn.com/bao/uploaded/i2/TB1UrvjLpXXXXb0XVXXXXXXXXXX_!!0-item_pic.jpg';
 	    //$filename = '123.jpg';
 	    //$p =  storage_path('taoke/images').'/'.$filename;
 	    //$file = Image::make($path)->resize(300, 200)
