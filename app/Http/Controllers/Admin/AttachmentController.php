@@ -130,6 +130,10 @@ class AttachmentController extends Controller
 			    Goods::updateOrCreate(['goods_id' => $tmp['goods_id']], $tmp);
 		    }
 	    }
+
+	    //删除excel文件.
+	    \Storage::delete($filePath);
+
     }
 
     protected function formatDefaultGoods($key, $data, &$tmp)
