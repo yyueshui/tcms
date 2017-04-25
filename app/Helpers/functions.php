@@ -36,7 +36,7 @@ if(!function_exists('sql_dump')) {
 	function sql_dump()
 	{
 		DB::listen(
-			function ($sql) {
+			function($sql) {
 				// $sql is an object with the properties:
 				//  sql: The query
 				//  bindings: the sql query variables
@@ -45,11 +45,11 @@ if(!function_exists('sql_dump')) {
 
 				// To save the executed queries to file:
 				// Process the sql and the bindings:
-				foreach ($sql->bindings as $i => $binding) {
-					if ($binding instanceof \DateTime) {
+				foreach($sql->bindings as $i => $binding) {
+					if($binding instanceof \DateTime) {
 						$sql->bindings[$i] = $binding->format('\'Y-m-d H:i:s\'');
 					} else {
-						if (is_string($binding)) {
+						if(is_string($binding)) {
 							$sql->bindings[$i] = "'$binding'";
 						}
 					}
@@ -80,5 +80,12 @@ if(!function_exists('wechat_at')) {
 		$arr = explode($name, $msg);
 
 		return isset($arr[1]) ? trim($arr[1]) : $msg;
+	}
+}
+
+if(!function_exists('taoke_goods_image_url')) {
+	function taoke_goods_image_url($name)
+	{
+		return storage_path(config('app.taoke.images')) . '/' . $name;
 	}
 }
